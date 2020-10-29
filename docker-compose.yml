@@ -1,0 +1,28 @@
+version: '3'
+services:
+    client:
+        build:
+            context: ./PaymentDetailAPP
+            dockerfile: Dockerfile
+        ports: 
+            - "4000:80"
+    ms-sql-server:
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        environment:
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: "Docker123"
+            MSSQL_PID: Express
+        ports:
+            - "1433:1433"
+        
+    webapi:
+        build:
+            context: ./WebAPI
+            dockerfile: Dockerfile
+        environment:
+            DBServer: "ms-sql-server"
+        ports:
+            - "8080:80"
+        depends_on:
+            - ms-sql-server
+    

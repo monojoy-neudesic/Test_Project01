@@ -1,0 +1,3 @@
+App1- frontend app1-frontend.azurewebsites.net
+API - backend API-backend.azurewebsites.net
+Mongo - database - mongoatlas
